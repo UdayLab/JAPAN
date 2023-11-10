@@ -1,5 +1,5 @@
-storingDataInDatabase/temp
 *.zip
-soramame/database.ini
 .idea
 .git
+*.csv
+/venv/
