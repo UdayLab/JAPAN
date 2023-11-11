@@ -1,13 +1,14 @@
-import os
 import csv
+import os
 import sys
-import psycopg2
-from config import config
-from alive_progress import alive_bar
 from os import listdir
 from os.path import isfile, join
-from config import config
+
+import psycopg2
 from alive_progress import alive_bar
+
+from config import config
+
 
 class oldHourlyDataFormat:
 
@@ -38,20 +39,38 @@ class oldHourlyDataFormat:
                         header = next(f)
 
                         for row in f:
+                            date = ''
+                            query = ''
+
                             for i in range(len(row)):
                                 # filling missing values
                                 # print(row[i])
-                                if row[i] == '' or row[i] == '-' or '#' in row[i]:
-                                    row[i] = '9999'
+                                if i == 1 or i ==2:
+                                    if row[i] == '':
+                                        date = 'NULL'
+                                else:
+                                    if row[i] == '' or row[i] == '-' or '#' in row[i]:
+                                        row[i] = 'NULL'
 
+                            if date == '':
                                 # writing query
-                            query = 'insert into hourly_observations values(' + row[0] + ',\'' + row[1] + ' ' + row[
-                                2] + ':00:00\'' + ',' + \
-                                    row[3] + ',' + row[4] + ',' + row[5] + ',' \
-                                    + row[6] + ',' + row[7] + ',' + row[8] + ',' + row[9] + ',' + row[10] + ',' + row[
-                                        11] + ',' + \
-                                    row[12] + ',' + row[13] + ',' + row[14] + ',-1' + ',' + row[16] + ',' + row[17] + ',' + row[
-                                        18] + ")"
+                                query = 'insert into hourly_observations values(' + row[0] + ',\'' + row[1] + ' ' + row[
+                                    2] + ':00:00\'' + ',' + \
+                                        row[3] + ',' + row[4] + ',' + row[5] + ',' \
+                                        + row[6] + ',' + row[7] + ',' + row[8] + ',' + row[9] + ',' + row[10] + ',' + \
+                                        row[
+                                            11] + ',' + \
+                                        row[12] + ',' + row[13] + ',' + row[14] + ',-1' + ',' + row[16] + ',' + row[
+                                            17] + ',' + row[
+                                            18] + ")"
+                            else:
+                                # writing query
+                                query = 'insert into hourly_observations values(' + row[0] + ',' + date + ',' + \
+                                        row[3] + ',' + row[4] + ',' + row[5] + ',' \
+                                        + row[6] + ',' + row[7] + ',' + row[8] + ',' + row[9] + ',' + row[10] + ',' + row[
+                                            11] + ',' + \
+                                        row[12] + ',' + row[13] + ',' + row[14] + ',-1' + ',' + row[16] + ',' + row[17] + ',' + row[
+                                            18] + ")"
 
                             # executing the query
                             cur.execute(query)
