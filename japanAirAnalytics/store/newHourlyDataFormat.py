@@ -1,7 +1,7 @@
 # Unzips Soramame data files, inserts the data into a PostgreSQL database, and stores information about unsuccessful insertions in a CSV file.
 #
 #
-# **Importing this soramame data files in a Python program**
+# **Importing this japanAirAnalytics data files in a Python program**
 # -------------------------------------------------------------
 #
 #
@@ -53,7 +53,7 @@ class newHourlyDataFormat:
 
 
 
-    **Methods to execute soramame on terminal**
+    **Methods to execute japanAirAnalytics on terminal**
     --------------------------------------------
 
                 Format:
@@ -65,7 +65,7 @@ class newHourlyDataFormat:
                      .. note:: Specify the name of the database in database.ini file
 
 
-    **Importing this soramame data files into a python program**
+    **Importing this japanAirAnalytics data files into a python program**
     ----------------------------------------------------
     .. code-block:: python
 

@@ -4,15 +4,15 @@ with open('README.md', 'r') as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name='pami',
-    version='2023.10.20.03',
+    name='japanAirAnalytics',
+    version='2023.11.11.01',
     author='Rage Uday Kiran',
     author_email='uday.rage@gmail.com',
     description='This software is being developed at the University of Aizu, Aizu-Wakamatsu, Fukushima, Japan',
     long_description=long_description,
     long_description_content_type='text/markdown',
     packages=setuptools.find_packages(),
-    url='https://github.com/udayLab/PAMI',
+    url='https://github.com/UdayLab/japanAirAnalytics',
     license='GPLv3',
     install_requires=[            # All necessary packages utilized by our PAMI software
         'psutil',
