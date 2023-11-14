@@ -1,3 +1,15 @@
+# This Program takes input as folder containing various csv files in it. Reads all csv files and handles missing dates and inserts the data into a PostgreSQL database.
+#
+# **Importing this japanAirAnalytics data files in a Python program**
+# ---------------------------------------------------------------------
+#
+#
+#           from japanAirAnalytics.store import oldHourlyDataFormat as db
+#
+#           obj = db()
+#
+#           obj.insertData(inputDataFolder)
+
 import csv
 import os
 import sys
@@ -7,13 +19,47 @@ from os.path import isfile, join
 import psycopg2
 from alive_progress import alive_bar
 
-from config import config
+from japanAirAnalytics.store import config
 
 
 class oldHourlyDataFormat:
+    """
+    :Description: This program reads CSV files from the specified folder, handles missing dates, and inserts the data into the hourly_observations table in a PostgreSQL database.
+
+    :param  inputDataFolder: str :
+                            The path to the folder containing CSV files. Example: oldHourlyDataFormat.insert('/path/to/inputDataFolder')
+    :Attributes:
+            None
+
+    :Methods:
+            insert(inputDataFolder): Reads CSV files, handles missing dates, and inserts data into the hourly_observations table.
+
+
+    **Methods to execute japanAirAnalytics on terminal**
+    -------------------------------------------------------
+
+                Format:
+                        >>>python3 oldHourlyDataFormat.py <inputDataFolder>
+                Example:
+                        >>>python3 oldHourlyDataFormat.py inputDataFolder
+
+                        .. note:: Specify the name of the database in database.ini file
+
+
+    **Importing this japanAirAnalytics data files into a python program**
+    ------------------------------------------------------------------------
+    .. code-block:: python
+
+            from japanAirAnalytics.store import oldHourlyDataFormat as db
+
+            obj = db()
+
+            obj.insertData(inputDataFolder)
+
+    """
 
     def insert(inputDataFolder):
-        subFolders = [ f.path for f in os.scandir(inputDataFolder) if f.is_dir() ]
+        subFolders = [f.path for f in os.scandir(inputDataFolder) if f.is_dir() ]
         conn = None
         inputFileName = ""
         for folder in subFolders:

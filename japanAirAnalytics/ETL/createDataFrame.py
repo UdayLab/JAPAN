@@ -1,17 +1,78 @@
+# Creating the CSV file dataset that contains timestamps and pm2.5 data.
+#
+# **Importing into a python program**
+# -----------------------------------------------------
+#             from japanAirAnalytics.ETL import createDataFrame as db
+#
+#             obj = db(startDate, endDate)
+#
+#             timestamps = obj.createTimeStampColumnInDataFrame()
+#
+#             pm25Data = obj.generateDataFrameForAllStations()
+#
+#             saveFile = obj.save("pm25_20180101_20231031.csv")
+
+
 import sys
 import psycopg2
 import pandas as pd
-from config import config
-import time
+from japanAirAnalytics.ETL import config
 from datetime import timedelta, datetime
 from alive_progress import alive_bar
 
 
 class createDataFrame:
+    """
+    :Description: This program first creates timestamps with the help of the startDate and endDate, storing them in a dataframe. Secondly, it generates a pm2.5 data into a dataframe and merge with timeStamp.
 
-    def __init__(self, startDate, endDate):
-        self.startDate = startDate
-        self.endDate = endDate
+
+    :param  startDate: str :
+                    Specify the start date in the format 'YYYY-MM-DD'. Example: '2018-01-01'
+
+    :param  endDate: str :
+                    Specify the end date in the format 'YYYY-MM-DD'. Example: '2023-10-31'
+
+
+    :Methods:
+
+        createTimeStampColumnInDataFrame(): Creates timestamps by taking startDate and endDate as inputs.
+
+        generateDataFrameForAllStations(): Collects station IDs and pm2.5 data, then merges them with the timestamp dataframe.
+
+        save(fileName): saves the generated dataset into a CSV file.
+
+
+    **Executing code on terminal**
+    ------------------------------------
+
+               Format:
+                        >>>  python3 createDataFrame.py <startDate> <endDate>
+               Example:
+                        >>>  python3 createDataFrame.py '2018-01-01' '2023-10-31'
+
+                        .. note:: Specify the name of the database in database.ini file
+
+
+    **Importing into a python program**
+    -----------------------------------------
+    .. code-block:: python
+
+             from japanAirAnalytics.ETL import createDataFrame as db
+
+             obj = db(startDate, endDate)
+
+             timestamps = obj.createTimeStampColumnInDataFrame()
+
+             pm25Data = obj.generateDataFrameForAllStations()
+
+             saveFile = obj.save("pm25_20180101_20231031.csv")
+
+
+    """
+
+    def __init__(self, startDate: str, endDate: str):
+        self.startDate = datetime.strptime(startDate, '%Y-%m-%d')
+        self.endDate = datetime.strptime(endDate, '%Y-%m-%d')
         self.dataframe = None
         self.timeStamps = None
         self.stationIDs = None
@@ -20,6 +81,14 @@ class createDataFrame:
         self.time = []
 
     def createTimeStampColumnInDataFrame(self) -> None:
+        """
+        This function takes two parameters as input (startDate, endDate), generates timestamps in format ('%Y-%m-%d %H:%M:%S') and finally stores in dataFrame.
+
+        :return: None
+
+                 DataFrame stores timestamp values
+
+        """
         hoursList = []
         while self.startDate <= endDate:
             for hour in range(24):
@@ -30,6 +99,21 @@ class createDataFrame:
         self.dataframe = pd.DataFrame(hoursList, columns=['TimeStamp'])
 
     def generateDataFrameForAllStations(self, tableName='hourly_observations') -> None:
+        """
+        This function involves three steps:
+
+            - First, establish a connection to the database.
+
+            - Second, collect station IDs and pm2.5 data from the table and store them in a temporary dictionary.
+
+            - Third, merge the dataframe with timestamps and pm2.5 data.
+
+        :param tableName: Specify the name of the table
+
+        :return: None
+
+                 DataFrame stores timestamp, pm2.5 values
+        """
         dataframe = None
         conn = None
         try:
@@ -78,17 +162,36 @@ class createDataFrame:
                 print('Database connection closed.')
 
     def save(self, fileName):
+        """
+        Stores the pm2.5 data into a csv file
+
+        :param fileName: Specify the name of the csv file
+
+        :return: csv file
+        """
 
         print(self.dataframe)
         self.dataframe.to_csv(fileName, index=False)
 
 
 if __name__ == "__main__":
-    startDate = datetime(2018, 1, 1)
-    endDate = datetime(2023, 10, 31)
-    obj = createDataFrame(startDate, endDate)
+    """
+    start the main() method.
+    
+    """
+    try:
+        if len(sys.argv) != 3:
+            raise ValueError("Incorrect number of input parameters")
 
-    obj.createTimeStampColumnInDataFrame()
-    obj.generateDataFrameForAllStations()
+        startDate = sys.argv[1]
+        endDate = sys.argv[2]
+        obj = createDataFrame(startDate, endDate)
+        obj.createTimeStampColumnInDataFrame()
+        obj.generateDataFrameForAllStations()
+        obj.save("pm25_20180101_20231031.csv")
 
-    obj.save("pm25_20180101_20231031.csv")
+    except ValueError as ve:
+        print(f"Error: {ve}. Format: startDate = 2018-01-01, endDate = 2023-10-31")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+

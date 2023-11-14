@@ -1,31 +1,66 @@
 # This function inserts station information from a CSV file into a PostgreSQL database.
 # It uses the provided input file to read station data and inserts it into the 'station_info' table in the database.
+# **Importing data files in a Python program**
+# ---------------------------------------------
+#
+#
+#             from japanAirAnalytics.store import stationInfo as db
+#
+#             obj = stationInfo()
+#
+#             obj.insert(inputFile)
+
+
 import csv
 import sys
 import psycopg2
-from config import config
+from japanAirAnalytics.store import config
 from alive_progress import alive_bar
 
 # SQL query to create stationInformation table
 # query = CREATE TABLE stationInfo(sid int not null, geog geography(POINT,4326), addressInfo varchar)
 
 class stationInfo:
+    """
+    :Description: This class inserts station information from a CSV file into a PostgreSQL database. It reads station data from the provided input file and inserts it into the 'station_info' table in the database.
+
+    :param  inputFile: str :
+                File containing station information (-stationAdd.txt file in Data folder).
+
+    :Methods:
+            insert(inputFile): This method reads a CSV file and inserts station information into the 'station_info' table.
+
+
+    **Executing on Python Terminal**
+    ----------------------------------
+
+                    Format:
+                        >>>  stationInfo.insert(inputFile)
+                    Example:
+                        >>>  stationInfo.insert("station_info_data.csv")
+
+    **Importing data files in a Python program**
+    ---------------------------------------------
+
+              from japanAirAnalytics.store import stationInfo as db
+
+              obj = stationInfo()
+
+              obj.insert(inputFile)
+
+
+    """
 
     def insert(inputFile):
 
         """
-        :Description: This function inserts station information from a CSV file into a PostgreSQL database. It uses the provided input file to read station data and inserts it into the 'station_info' table in the database.
+        This method reads the specified CSV file and inserts station information into the 'station_info' table in a PostgreSQL database.
 
-        :param inputFile: str
-                File containing station information (-stationAdd.txt file in Data folder).
+        :param:  inputFile: str :
+                    The path to the CSV file containing station information. Example: stationInfo.insert("station_info_data.csv")
 
-        **Methods to execute the csv file**
-        --------------------------------------------------
-
-                    Format:
-                          >>>   stationInfo.store(input_file)
-                    Example:
-                         >>>    stationInfo.store("station_info_data.csv")
+        Returns:
+            None
 
         """
         conn = None
@@ -82,3 +117,4 @@ if __name__ == '__main__':
         print("Format: python3  stationInfo.py  fileName")
     else:
         stationInfo.insert(sys.argv[1])
+
