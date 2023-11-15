@@ -2,7 +2,7 @@
 #
 # **Importing into a python program**
 # -----------------------------------------------------
-#             from japanAirAnalytics.ETL import createDataFrame as db
+#             from JAPAN.ETL import createDataFrame as db
 #
 #             obj = db(startDate, endDate)
 #
@@ -16,7 +16,7 @@
 import sys
 import psycopg2
 import pandas as pd
-from japanAirAnalytics.ETL import config
+from JAPAN.ETL import config
 from datetime import timedelta, datetime
 from alive_progress import alive_bar
 
@@ -57,7 +57,7 @@ class createDataFrame:
     -----------------------------------------
     .. code-block:: python
 
-             from japanAirAnalytics.ETL import createDataFrame as db
+             from JAPAN.ETL import createDataFrame as db
 
              obj = db(startDate, endDate)
 
@@ -142,7 +142,7 @@ class createDataFrame:
 
                     temp = {}
                     for sensorValue in pm25Data:
-                        if sensorValue[1] in [-1000, 9999]:
+                        if sensorValue[1] in [-1000, 9999] or sensorValue[1] =='None':
                             temp[str(sensorValue[0])] = 'NaN'
                         else:
                             temp[str(sensorValue[0])] = str(sensorValue[1])

@@ -3,7 +3,7 @@ import setuptools
 with open('README.md', 'r') as fh:
     long_description = fh.read()
 
-#japanAirAnalytics
+#JAPAN
 setuptools.setup(
     name='JAPAN',
     version='2023.11.11.1',
