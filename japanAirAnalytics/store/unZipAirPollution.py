@@ -3,7 +3,7 @@
 # **Importing data files in a Python program**
 # ---------------------------------------------
 #
-#           from airAnalytics.store import getFolder as db
+#           from japanAirAnalytics.store import getFolder as db
 #
 #           obj = db(zipFolder, outputLocation)
 
@@ -38,7 +38,7 @@ def getFolder(zipFolder, outputLocation):
     --------------------------------------------------
     .. code-block:: python
 
-            from airAnalytics.store import getFolder as db
+            from japanAirAnalytics.store import getFolder as db
 
             obj = db(zipFolder, outputLocation)
 

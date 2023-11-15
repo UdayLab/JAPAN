@@ -2,7 +2,7 @@
 #
 # **Importing into a python program**
 # -----------------------------------------------------
-#             from airAnalytics.ETL import createDataFrame as db
+#             from japanAirAnalytics.ETL import createDataFrame as db
 #
 #             obj = db(startDate, endDate)
 #
@@ -16,7 +16,7 @@
 import sys
 import psycopg2
 import pandas as pd
-from airAnalytics.ETL import config
+from japanAirAnalytics.ETL import config
 from datetime import timedelta, datetime
 from alive_progress import alive_bar
 
@@ -57,7 +57,7 @@ class createDataFrame:
     -----------------------------------------
     .. code-block:: python
 
-             from airAnalytics.ETL import createDataFrame as db
+             from japanAirAnalytics.ETL import createDataFrame as db
 
              obj = db(startDate, endDate)
 
