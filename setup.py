@@ -3,10 +3,10 @@ import setuptools
 with open('README.md', 'r') as fh:
     long_description = fh.read()
 
-#JAPAN
+#airAnalytics
 setuptools.setup(
-    name='JAPAN',
-    version='2023.11.11.1',
+    name='airAnalytics',
+    version='2023.11.15.1',
     author='Rage Uday Kiran',
     author_email='uday.rage@gmail.com',
     description='This software is being developed at the University of Aizu, Aizu-Wakamatsu, Fukushima, Japan',

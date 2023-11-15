@@ -1,5 +1,5 @@
-#echo "Uninstall old JAPAN version"
-#pip3 uninstall -y JAPAN
+#echo "Uninstall old airAnalytics version"
+#pip3 uninstall -y airAnalytics
 
 echo "Running setup"
 python3 setup.py sdist bdist_wheel

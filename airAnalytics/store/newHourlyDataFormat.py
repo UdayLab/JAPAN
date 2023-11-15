@@ -1,10 +1,10 @@
 # This Program takes input as folder containing various csv files in it. Reads all csv files and handles missing dates and inserts the data into a PostgreSQL database.
 #
-# **Importing this JAPAN data files in a Python program**
+# **Importing this airAnalytics data files in a Python program**
 # ---------------------------------------------------------------------
 #
 #
-#           from JAPAN.store import newHourlyDataFormat as db
+#           from airAnalytics.store import newHourlyDataFormat as db
 #
 #           obj = db()
 #
@@ -16,7 +16,7 @@ import sys
 from os import listdir
 from os.path import isfile, join
 import psycopg2
-from JAPAN.store import config
+from airAnalytics.store import config
 from alive_progress import alive_bar
 
 class newHourlyDataFormat:
@@ -32,7 +32,7 @@ class newHourlyDataFormat:
             insert(inputDataFolder): Reads CSV files, handles missing dates, and inserts data into the hourly_observations table.
 
 
-    **Methods to execute JAPAN on terminal**
+    **Methods to execute airAnalytics on terminal**
     -------------------------------------------------------
 
                 Format:
@@ -43,11 +43,11 @@ class newHourlyDataFormat:
                         .. note:: Specify the name of the database in database.ini file
 
 
-    **Importing this JAPAN data files into a python program**
+    **Importing this airAnalytics data files into a python program**
     ------------------------------------------------------------------------
     .. code-block:: python
 
-            from JAPAN.store import newHourlyDataFormat as db
+            from airAnalytics.store import newHourlyDataFormat as db
 
             obj = db()
 

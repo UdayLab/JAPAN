@@ -4,7 +4,7 @@
 # ---------------------------------------------
 #
 #
-#             from JAPAN.store import stationInfo as db
+#             from airAnalytics.store import stationInfo as db
 #
 #             obj = stationInfo()
 #
@@ -14,7 +14,7 @@
 import csv
 import sys
 import psycopg2
-from JAPAN.store import config
+from airAnalytics.store import config
 from alive_progress import alive_bar
 
 # SQL query to create stationInformation table
@@ -42,7 +42,7 @@ class stationInfo:
     **Importing data files in a Python program**
     ---------------------------------------------
 
-              from JAPAN.store import stationInfo as db
+              from airAnalytics.store import stationInfo as db
 
               obj = stationInfo()
 
