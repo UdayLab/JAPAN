@@ -1,3 +1,6 @@
+[![Documentation Status](https://readthedocs.org/projects/japanairanalytics/badge/?version=latest)](https://japanairanalytics.readthedocs.io/en/latest/?badge=latest)
+
+
 # SQL queries
 
 ### Execute the following two SQL queries to create tables in a database.
