@@ -1,6 +1,10 @@
 [![Documentation Status](https://readthedocs.org/projects/japan/badge/?version=latest)](https://japan.readthedocs.io/en/latest/?badge=latest)
 
+***
 
+[Manual to use Japan Air Pollutio ANalytics Package](https://japan.readthedocs.io/en/latest/)
+
+***
 
 # SQL queries
 
