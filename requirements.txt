@@ -2,3 +2,5 @@ pandas
 numpy
 alive_progress
 psycopg-binary
+sphinx_rtd_theme
+Sphinx
