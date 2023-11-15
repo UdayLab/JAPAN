@@ -1,4 +1,5 @@
-[![Documentation Status](https://readthedocs.org/projects/japanairanalytics/badge/?version=latest)](https://japanairanalytics.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/japan/badge/?version=latest)](https://japan.readthedocs.io/en/latest/?badge=latest)
+
 
 
 # SQL queries
