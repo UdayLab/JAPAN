@@ -3,8 +3,9 @@ import setuptools
 with open('README.md', 'r') as fh:
     long_description = fh.read()
 
+#japanAirAnalytics
 setuptools.setup(
-    name='japanAirAnalytics',
+    name='JAPAN',
     version='2023.11.11.1',
     author='Rage Uday Kiran',
     author_email='uday.rage@gmail.com',
